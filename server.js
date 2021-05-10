@@ -34,12 +34,12 @@ app.get('/api/:date',(req,res)=>{
 
 if (date_regex.test(date)){
 
-res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
+res.json({unix:parseInt(new Date(date).getTime(),10),utc:new Date(date).toUTCString()})
   }
 else if(unix_epoch_regex.test(date))
 {
   
-res.json({unix:date,utc:new Date(parseInt(date,10)).toUTCString()})
+res.json({unix:parseInt(date,10),utc:new Date(parseInt(date,10)).toUTCString()})
 }
 else
 {
