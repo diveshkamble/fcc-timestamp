@@ -28,9 +28,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get('/api/:date',(req,res)=>{
+app.get('/api/:date?',(req,res)=>{
 
-  const date = req.params.date;
+  let date = req.params.date;
+
+  if (!date){
+    date = new Date().getTime();
+    
+  }
 
 if (date_regex.test(date)){
 
@@ -39,7 +44,7 @@ res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
 else if(unix_epoch_regex.test(date))
 {
   
-res.json({unix:new Date(date*1).getTime(),utc:new Date(parseInt(date,10)).toUTCString()})
+res.json({unix:new Date(date*1).getTime(),utc:new Date(date).toUTCString()})
 }
 else
 {
