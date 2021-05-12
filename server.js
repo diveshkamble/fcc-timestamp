@@ -31,16 +31,11 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:date?',(req,res)=>{
 
   let date = req.params.date;
- 
+ console.log("Date = "+date)
   if (!date){
     date = new Date().getTime();
   }
 
-
-  if (new Date(date).toString() === 'Invalid Date')
-{
-  res.status(200).json({error:'Invalid Date'});
-  }
 
 if (date_regex.test(date)){
 res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()});
@@ -48,8 +43,11 @@ res.end();
   }
 if(unix_epoch_regex.test(date));
 {
+  if (date*1 === 'NaN')
+  res.json({error:'Invalid Date'})
   res.status(200).json({unix:new Date(parseInt(date*1)).getTime(),utc:new Date(parseInt(date)).toUTCString()});
   }
+
 
 
  if (new Date(date)!== undefined)
