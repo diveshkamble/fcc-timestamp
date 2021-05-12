@@ -31,7 +31,7 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:date?',(req,res)=>{
 
   let date = req.params.date;
-
+console.log(date)
   if (!date){
     date = new Date().getTime();
     
