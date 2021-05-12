@@ -39,7 +39,7 @@ app.get('/api/:date?',(req,res)=>{
 
 if (date_regex.test(date)){
 
-res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
+res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()});
   }
 else if(unix_epoch_regex.test(date));
 {
