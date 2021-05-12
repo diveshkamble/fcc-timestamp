@@ -52,7 +52,7 @@ else if (new Date(date)!== undefined)
 }
 else
 {
-  res.json({error:'Invalid Date'})
+  res.json({error:'Invalid Date'});
 }
 })
 
