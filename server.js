@@ -38,7 +38,6 @@ app.get('/api/:date?',(req,res)=>{
 
 
 if (date_regex.test(date)){  
-  console.log("Here 1");
 res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()});
   }
 
@@ -47,7 +46,6 @@ res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCStri
 
 if(unix_epoch_regex.test(date))
 {
-  console.log("Here 3");
   res.status(200).json({unix:new Date(parseInt(date*1)).getTime(),utc:new Date(parseInt(date)).toUTCString()});
   }
 
@@ -59,7 +57,6 @@ const temp = new Date(date).getTime()
  }
  else
 {
-  console.log("Here 4");
   res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
   }
 
