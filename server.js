@@ -46,9 +46,13 @@ else if(unix_epoch_regex.test(date))
   
 res.json({unix:new Date(parseInt(date)).getTime(),utc:new Date(parseInt(date)).toUTCString()})
 }
+else if (new Date(date)!== undefined)
+{
+  res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
+}
 else
 {
- res.json({error:"Invalid Date"})
+  res.json({error:'Invalid Date'})
 }
 })
 
