@@ -41,12 +41,13 @@ if (date_regex.test(date)){
 
 res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()});
   }
-else if(unix_epoch_regex.test(date));
+if(unix_epoch_regex.test(date));
 {
   
-res.json({unix:new Date(parseInt(date)).getTime(),utc:new Date(parseInt(date)).toUTCString()})
+res.json({unix:new Date(parseInt(date)).getTime(),utc:new Date(parseInt(date)).toUTCString()});
 }
-else if (new Date(date)!== undefined)
+
+ if (new Date(date)!== undefined)
 {
   res.json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
 }
