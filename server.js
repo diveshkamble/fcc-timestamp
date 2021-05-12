@@ -10,8 +10,8 @@ var port = process.env.PORT || 5000;
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
 
-const date_regex = new RegExp('([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))');
-const unix_epoch_regex = new RegExp('^([(0-9]{13})$');
+let date_regex = new RegExp('([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))');
+let unix_epoch_regex = new RegExp('([0-9]{13})');
 app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
@@ -31,27 +31,35 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:date?',(req,res)=>{
 
   let date = req.params.date;
- console.log("Date = "+date)
+
   if (!date){
     date = new Date().getTime();
   }
 
 
-if (date_regex.test(date)){
+if (date_regex.test(date)){  
+  console.log("Here 1");
 res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()});
-res.end();
   }
-if(unix_epoch_regex.test(date));
+
+
+
+
+if(unix_epoch_regex.test(date))
 {
-  if (date*1 === 'NaN')
-  res.json({error:'Invalid Date'})
+  console.log("Here 3");
   res.status(200).json({unix:new Date(parseInt(date*1)).getTime(),utc:new Date(parseInt(date)).toUTCString()});
   }
 
+const temp = new Date(date).getTime()
 
-
- if (new Date(date)!== undefined)
+ if (Number.isNaN(temp))
+ {
+  res.json({error:'Invalid Date'})
+ }
+ else
 {
+  console.log("Here 4");
   res.status(200).json({unix:new Date(date).getTime(),utc:new Date(date).toUTCString()})
   }
 
